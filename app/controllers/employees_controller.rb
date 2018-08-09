@@ -46,6 +46,6 @@ class EmployeesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def employee_params
-      params.require(:employee).permit(:name, :salary, :reviews, :date)
+      params.require(:employee).permit(:name, :salary, :goals, :reviews, :date)
     end
 end

@@ -1,3 +1,3 @@
 class EmployeeSerializer < ActiveModel::Serializer
-  attributes :id, :name, :salary, :reviews, :date
+  attributes :id, :name, :goals, :salary, :reviews, :date
 end
