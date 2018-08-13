@@ -1,10 +1,12 @@
-class EmployeesController < ApplicationController
-  before_action :set_employee, only: [:show, :update, :destroy]
+# frozen_string_literal: true
+
+class EmployeesController < ProtectedController
+  before_action :set_employee, only: %i[show update destroy]
 
   # GET /employees
   def index
-    @employees = Employee.all
-
+    # @employees = Employee.all
+  @employees = current_user.employees.all
     render json: @employees
   end
 
@@ -15,8 +17,8 @@ class EmployeesController < ApplicationController
 
   # POST /employees
   def create
-    @employee = Employee.new(employee_params)
-
+    # @employee = Employee.new(employee_params)
+@employee = current_user.employees.build(employee_params)
     if @employee.save
       render json: @employee, status: :created, location: @employee
     else
@@ -41,6 +43,8 @@ class EmployeesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_employee
+      # @employee = current_user.employees.find(params[:id])
+
       @employee = Employee.find(params[:id])
     end
 
